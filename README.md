@@ -1,2 +1,7 @@
-# kooty-ballsac-style
-KOOTY BALLSAC STYLE — standalone hair-pluck game. Separate from hut-brain.
+# KOOTY BALLSAC STYLE
+
+Standalone hair-pluck toy. Not Hut's Brain.
+
+Play: https://git33b.github.io/kooty-ballsac-style/
+
+Tap the strands. Hit zero. Celebrate.

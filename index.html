@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>KOOTY BALLSAC STYLE</title>
+  <meta name="description" content="Pluck every last strand off Koot's head." />
+  <meta name="theme-color" content="#140f0c" />
+  <meta property="og:title" content="KOOTY BALLSAC STYLE" />
+  <meta property="og:description" content="Pluck every last strand off Koot's head." />
+  <meta property="og:image" content="https://git33b.github.io/kooty-ballsac-style/og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #140f0c; --surface: #241c16; --elevated: #2e241c;
+      --fg: #f4e8d6; --muted: #b9a58f; --subtle: #7d6b58;
+      --gold: #e8b45a; --warn: #e07a5f;
+      --ease: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { min-height: 100%; background: var(--bg); color: var(--fg);
+      font-family: "DM Sans", system-ui, sans-serif; }
+    body { padding: 12px; padding-bottom: max(12px, env(safe-area-inset-bottom));
+      background-image: radial-gradient(ellipse at 50% -10%, rgb(232 180 90 / 0.1), transparent 48%); }
+    button:not(:disabled) { cursor: pointer; }
+    .wrap { max-width: 36rem; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    header { display: flex; justify-content: space-between; align-items: end; gap: 12px;
+      background: var(--surface); border-radius: 12px; padding: 12px 16px;
+      box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08); }
+    .tag { font-size: 11px; letter-spacing: .22em; color: var(--gold); }
+    h1 { font-family: "Bebas Neue", Impact, sans-serif; font-size: clamp(1.6rem, 7vw, 2.1rem);
+      letter-spacing: .04em; line-height: .95; }
+    .count { text-align: right; }
+    .count label { display: block; font-size: 10px; letter-spacing: .16em; color: var(--muted); }
+    .count b { font-family: "Bebas Neue", Impact, sans-serif; font-size: 2rem; color: var(--gold); line-height: 1; }
+    .count small { display: block; margin-top: 4px; font-size: 10px; letter-spacing: .16em; color: var(--subtle); }
+    .share { min-height: 44px; padding: 0 12px; border: 0; border-radius: 8px;
+      background: var(--surface); color: var(--fg); letter-spacing: .16em; text-transform: uppercase;
+      font: 600 11px/1 "DM Sans", system-ui; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08); }
+    .stage { position: relative; overflow: hidden; border-radius: 12px; background: var(--elevated);
+      box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08); }
+    .scalp { position: relative; aspect-ratio: 1; width: 100%; }
+    .head { position: absolute; inset: 0; transform-origin: 50% 80%;
+      animation: bob 3.6s var(--ease) infinite; }
+    .head.is-wince { animation: wince 180ms var(--ease); }
+    .head img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      pointer-events: none; user-select: none; }
+    .hair, .fly { position: absolute; z-index: 6; width: 48px; height: calc(var(--len) + 32px);
+      transform: translate(-50%, -85%) rotate(var(--ang)); transform-origin: 50% 100%;
+      background: transparent; border: 0; padding: 0; touch-action: manipulation; }
+    .hair::before, .fly::before { content: ""; position: absolute; left: 50%; bottom: 10px;
+      width: 5px; height: var(--len); border-radius: 99px; transform: translateX(-50%);
+      background: linear-gradient(to top, #1a100c, #4a3428 45%, #8a5e3d 82%, #d4b896);
+      box-shadow: 0 0 0 1px rgb(232 180 90 / 0.35); }
+    .hair::after { content: ""; position: absolute; left: 50%; bottom: 6px; width: 11px; height: 11px;
+      border-radius: 99px; background: rgb(232 180 90 / 0.55); transform: translateX(-50%);
+      box-shadow: 0 0 8px rgb(232 180 90 / 0.45); }
+    .fly { pointer-events: none; animation: yeet 520ms var(--ease) forwards; }
+    .hint { padding: 12px; text-align: center; font-size: 10px; letter-spacing: .16em; color: var(--muted); }
+    .foot { text-align: center; font-size: 12px; color: var(--subtle); }
+    .win { position: fixed; inset: 0; z-index: 40; display: none; place-items: center; padding: 1rem;
+      background: rgb(20 15 12 / 0.82); overflow: hidden; }
+    .win.on { display: grid; }
+    .card { position: relative; z-index: 2; display: flex; width: min(100%, 26rem); flex-direction: column;
+      align-items: center; border-radius: 24px; background: var(--surface); padding: 20px 20px 24px;
+      box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08), 0 24px 80px rgb(0 0 0 / 0.45);
+      animation: pop 350ms var(--ease); }
+    .card img { width: min(100%, 20rem); aspect-ratio: 1; border-radius: 16px; object-fit: cover;
+      outline: 1px solid rgb(255 255 255 / 0.12); outline-offset: -1px; animation: pulse 900ms var(--ease) infinite; }
+    .kicker { margin-top: 14px; font-size: 11px; letter-spacing: .16em; color: var(--gold); }
+    .title { margin-top: 4px; font-family: "Bebas Neue", Impact, sans-serif;
+      font-size: clamp(2.4rem, 10vw, 3.4rem); line-height: .9; letter-spacing: .04em; text-align: center; }
+    .again { margin-top: 16px; min-height: 44px; padding: 0 18px; border: 0; border-radius: 12px;
+      background: var(--gold); color: #1a1208; font: 600 14px/1 "DM Sans", system-ui; letter-spacing: .12em;
+      text-transform: uppercase; }
+    .confetti { position: absolute; top: -8px; width: 8px; height: 14px; border-radius: 2px; opacity: 0;
+      animation: fall 1.6s linear infinite; }
+    .confetti:nth-child(odd) { background: var(--gold); }
+    .confetti:nth-child(even) { background: var(--warn); }
+    @keyframes bob { 0%,100% { transform: translateY(0) rotate(-0.6deg); } 50% { transform: translateY(4px) rotate(0.7deg); } }
+    @keyframes wince { 0% { transform: scale(1); } 40% { transform: scale(0.97) rotate(-1.4deg); } 100% { transform: scale(1); } }
+    @keyframes yeet { to { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-85% + var(--dy))) rotate(calc(var(--ang) + var(--spin))); } }
+    @keyframes pop { from { opacity: 0; transform: translateY(16px) scale(0.92); } }
+    @keyframes pulse { 50% { transform: scale(1.04); } }
+    @keyframes fall { 0% { opacity: 1; transform: translateY(0) rotate(0); } 100% { opacity: .2; transform: translateY(110vh) rotate(420deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      .head, .head.is-wince, .fly, .card, .card img, .confetti { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <p class="tag">PLUCK EVERY LAST STRAND</p>
+        <h1>KOOTY BALLSAC STYLE</h1>
+      </div>
+      <div style="display:flex;align-items:end;gap:10px">
+        <div class="count">
+          <label>hair strands left</label>
+          <b id="left">—</b>
+          <small id="plucked">seeding</small>
+        </div>
+        <button class="share" type="button" id="share">Share</button>
+      </div>
+    </header>
+    <section class="stage">
+      <div class="scalp">
+        <div class="head" id="head">
+          <img src="koot-play.jpg" alt="Koot" width="1024" height="1024" draggable="false" />
+        </div>
+        <div id="flies"></div>
+      </div>
+      <p class="hint">TAP A STRAND · HE WON'T MIND</p>
+    </section>
+    <p class="foot">A friend-roast toy. Koot already did the hard part.</p>
+  </div>
+  <div class="win" id="win" role="dialog" aria-label="Kooty Ballsac Style">
+    <span class="confetti" style="left:8%"></span><span class="confetti" style="left:16%"></span>
+    <span class="confetti" style="left:24%"></span><span class="confetti" style="left:32%"></span>
+    <span class="confetti" style="left:40%"></span><span class="confetti" style="left:48%"></span>
+    <span class="confetti" style="left:56%"></span><span class="confetti" style="left:64%"></span>
+    <span class="confetti" style="left:72%"></span><span class="confetti" style="left:80%"></span>
+    <span class="confetti" style="left:88%"></span><span class="confetti" style="left:96%"></span>
+    <div class="card">
+      <img src="koot-gif.jpg" alt="Koot celebrating" />
+      <p class="kicker" id="kicker">CLEAN SCALP</p>
+      <h2 class="title">KOOTY BALLSAC STYLE</h2>
+      <button class="again" type="button" id="again">Pluck him again</button>
+    </div>
+  </div>
+  <script>
+    const HAIR_MIN = 20, HAIR_MAX = 50, YEET_MS = 520;
+    const head = document.getElementById("head");
+    const flies = document.getElementById("flies");
+    const leftEl = document.getElementById("left");
+    const pluckedEl = document.getElementById("plucked");
+    const winEl = document.getElementById("win");
+    const kicker = document.getElementById("kicker");
+    let hairs = [], flying = [], total = 0, plucked = 0, phase = "PLAYING";
+
+    function rand(min, max) { return min + Math.floor(Math.random() * (max - min + 1)); }
+    function plant() {
+      const count = rand(HAIR_MIN, HAIR_MAX);
+      const out = [];
+      let guard = 0;
+      while (out.length < count && guard < 800) {
+        guard++;
+        const u = Math.random() * 2 - 1, v = Math.random() * 2 - 1;
+        if (u*u + v*v > 1) continue;
+        const x = 50 + u * 13, y = 17 + v * 6;
+        const minDist = out.length > count - 8 ? 1.6 : 4;
+        if (out.some(h => (h.x-x)**2 + (h.y-y)**2 < minDist)) continue;
+        out.push({ id: out.length+1, x, y, len: 28+Math.random()*22, ang: -26+Math.random()*52 });
+      }
+      while (out.length < count) {
+        out.push({ id: out.length+1, x: 42+Math.random()*16, y: 14+Math.random()*10,
+          len: 28+Math.random()*22, ang: -26+Math.random()*52 });
+      }
+      return out;
+    }
+    function yeet(h) {
+      const dir = h.ang + (Math.random()*40 - 20);
+      const dist = 90 + Math.random()*80;
+      const rad = dir * Math.PI / 180;
+      return { ...h, dx: Math.sin(rad)*dist, dy: -Math.cos(rad)*dist - 20,
+        spin: (Math.random()<0.5?-1:1)*(180+Math.random()*220) };
+    }
+    let audioCtx;
+    function blip(freq, dur, type, gain, start, slide) {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === "suspended") audioCtx.resume();
+      const now = audioCtx.currentTime + (start||0);
+      const g = audioCtx.createGain();
+      g.gain.setValueAtTime(gain, now);
+      g.gain.exponentialRampToValueAtTime(0.001, now + dur);
+      g.connect(audioCtx.destination);
+      const o = audioCtx.createOscillator();
+      o.type = type; o.frequency.setValueAtTime(freq, now);
+      if (slide) o.frequency.exponentialRampToValueAtTime(Math.max(40, slide), now + dur);
+      o.connect(g); o.start(now); o.stop(now + dur + 0.02);
+    }
+    function playPluck() { blip(420+Math.random()*180, 0.07, "square", 0.05, 0, 140); blip(180, 0.09, "sine", 0.03); }
+    function playWin() { blip(392,0.12,"square",0.05); blip(523,0.14,"square",0.05,0.1); blip(659,0.22,"square",0.055,0.2); blip(784,0.28,"sine",0.04,0.32); }
+
+    function render() {
+      head.querySelectorAll(".hair").forEach(n => n.remove());
+      hairs.forEach(h => {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "hair"; b.setAttribute("aria-label","Pluck hair");
+        b.style.left = h.x+"%"; b.style.top = h.y+"%";
+        b.style.setProperty("--len", h.len+"px"); b.style.setProperty("--ang", h.ang+"deg");
+        b.addEventListener("pointerdown", e => { e.preventDefault(); pluck(h.id); });
+        head.appendChild(b);
+      });
+      leftEl.textContent = hairs.length;
+      pluckedEl.textContent = plucked + "/" + total + " plucked";
+    }
+    function pluck(id) {
+      if (phase !== "PLAYING") return;
+      const i = hairs.findIndex(h => h.id === id);
+      if (i < 0) return;
+      const hair = hairs[i];
+      hairs = hairs.filter(h => h.id !== id);
+      plucked += 1;
+      playPluck();
+      head.classList.remove("is-wince"); void head.offsetWidth; head.classList.add("is-wince");
+      const f = yeet(hair);
+      const span = document.createElement("span");
+      span.className = "fly";
+      span.style.left = f.x+"%"; span.style.top = f.y+"%";
+      span.style.setProperty("--len", f.len+"px"); span.style.setProperty("--ang", f.ang+"deg");
+      span.style.setProperty("--dx", f.dx+"px"); span.style.setProperty("--dy", f.dy+"px");
+      span.style.setProperty("--spin", f.spin+"deg");
+      flies.appendChild(span);
+      setTimeout(() => span.remove(), YEET_MS);
+      render();
+      if (hairs.length === 0) {
+        phase = "WIN";
+        kicker.textContent = "CLEAN SCALP · " + total + " STRANDS DOWN";
+        winEl.classList.add("on");
+        playWin();
+      }
+    }
+    function seed() {
+      hairs = plant(); flying = []; total = hairs.length; plucked = 0; phase = "PLAYING";
+      winEl.classList.remove("on");
+      flies.innerHTML = "";
+      render();
+    }
+    document.getElementById("again").onclick = seed;
+    document.getElementById("share").onclick = async () => {
+      const url = location.href;
+      const text = phase === "WIN" ? "KOOTY BALLSAC STYLE — Koot is bald again." : "KOOTY BALLSAC STYLE — " + hairs.length + " hair strands left.";
+      try { if (navigator.share) { await navigator.share({ title: "KOOTY BALLSAC STYLE", text, url }); return; } } catch(e) { if (e && e.name === "AbortError") return; }
+      try { await navigator.clipboard.writeText(url); } catch(e) {}
+    };
+    seed();
+  </script>
+</body>
+</html>
